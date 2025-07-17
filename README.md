@@ -1,74 +1,24 @@
-# NEAR Sandbox
+<div align="center">
+  <h1>NEAR Sandbox</h1>
 
-NEAR Sandbox lets you easily run a local NEAR blockchain.
+  <p>
+    <strong>Programmable way to run and configure local <code>near-sandbox</code> binary</strong>
+  </p>
+</div>
 
-NEAR Sandbox is a [custom build](https://github.com/near/nearcore/blob/9f5e20b29f1a15a00fc50d6051b3b44bb6db60b6/Makefile#L67-L69) of the NEAR blockchain optimized for local development and testing. If you're familiar with [Ganache for Ethereum](https://www.trufflesuite.com/ganache), this is similar.
+## Implementations
 
-This repository contains code to quickly install pre-built binaries of NEAR Sandbox for multiple programming languages (currently NodeJS, Rust) and operating systems (currently just ARM64-based Macs and Debian/Ubuntu-flavored Linux distros using Intel processors).
+| Platform               | Repository                                                 | Latest Release                                                                                                                                                                                  |
+| ---------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rust                   | [near-sandbox-rs](https://github.com/near/near-sandbox-rs) | <a href="https://crates.io/crates/near-sandbox-utils"><img src="https://img.shields.io/crates/v/near-sandbox-utils.svg?style=flat-square" alt="`near-sandbox-rs` Latest Release Version" /></a> |
+| TypeScript, JavaScript | [near-sandbox-js](https://github.com/near/near-sandbox-js) | <a href="https://npmjs.com/near-sandbox"><img src="https://img.shields.io/npm/v/near-sandbox.svg?style=flat-square" alt="`near-sandbox-js` Latest Release Version" /></a>                       |
 
-# Using NEAR Sandbox
+## What is NEAR Sandbox?
 
-If you just want to run tests against a NEAR Sandbox instance, check out [near-workspaces](https://github.com/near/workspaces) for your favorite language:
-- [JavaScript](https://github.com/near/workspaces-js)
-- [Rust](https://github.com/near/workspaces-rs)
+**NEAR Sandbox** is a lightweight interface for running and configuring a local NEAR blockchain node instance.  
+It is designed for NEAR protocol contributors, integration testers, and application developers who need a reliable and programmable environment for testing interactions with the NEAR blockchain, with minimal dependencies.
 
-Tip: `near-runner` includes `near-sandbox` as a dependency, so you will not need to install or run `near-sandbox` on its own.
+NEAR Sandbox is essentially a [custom build](https://github.com/near/nearcore/blob/9f5e20b29f1a15a00fc50d6051b3b44bb6db60b6/Makefile#L67-L69) of the NEAR blockchain node (`neard` from [@near/nearcore](https://github.com/near/nearcore/tree/main/neard)), optimized for local development, testing, and automation. If you're familiar with [Ganache for Ethereum](https://www.trufflesuite.com/ganache), this is similar.
+It provides an easy way to launch and control a local NEAR RPC endpoint, enabling the simulation and management of blockchain state for development and CI/CD workflows.
 
-If you want to run NEAR Sandbox on its own, continue reading.
-
-## Install
-
-### With [npm](https://www.npmjs.com/)
-
-    npm i -g near-sandbox
-
-Note: If you have trouble downloading binary from IPFS gateway, you can upload a pre-built near-sandbox tar file to any file storage service and use `SANDBOX_ARTIFACT_URL` environment variable to specify it's base URL.
-e.g. `> SANDBOX_ARTIFACT_URL=https://s3.aws.com/my-binary npm i near-sandbox`
-
-
-### With Rust
-
-Coming soon
-
-### From Source
-
-* Install [Rust with correct build target](https://docs.near.org/develop/prerequisites)
-
-* Clone [nearcore](https://github.com/near/nearcore)
-
-      git clone https://github.com/near/nearcore
-
-* `cd` into your `nearcore` folder and run `make sandbox`
-
-      cd nearcore
-      make sandbox
-
-* For ease-of-use, you can copy (or [symlink](https://kb.iu.edu/d/abbe)) the binary to somewhere in your [PATH](https://www.cloudsavvyit.com/1933/what-is-the-unix-path-and-how-do-you-add-programs-to-it/). For example, if you have a `~/bin` folder:
-
-      cp target/debug/near-sandbox ~/bin/
-
-## Use
-
-* Initialize the Sandbox node
-
-      near-sandbox --home /tmp/near-sandbox init
-
-* Run it
-
-      near-sandbox --home /tmp/near-sandbox run
-
-To find out other things you can do:
-
-    near-sandbox --help
-
-## Stop
-
-Once you're finished using the sandbox node you can stop it by using <kbd>Ctrl</kbd><kbd>C</kbd>. To clean up the data it generates:
-
-    rm -rf /tmp/near-sandbox
-
-# What's special about NEAR Sandbox
-
-NEAR Sandbox includes custom features to make tweaking local and test environments easier.
-
-* `sandbox_patch_state` RPC call, used by [`patchState` in runner-js](https://github.com/near/runner-js#patch-state-on-the-fly), useful for making arbitrary state mutations on any contract or account
+For language-specific usage, installation, and API documentation, please refer to the relevant implementation repositories listed above.
